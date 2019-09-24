@@ -1,6 +1,6 @@
 from django.db import models
 from apps.login_reg.models import *
-from apps.recipe.models import *
+from apps.recipes.models import *
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
