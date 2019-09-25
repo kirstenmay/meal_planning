@@ -55,7 +55,7 @@
                                     <label for="ingredients">Select Ingredients</label>
                                     <select multiple class="form-control" id="ingredients" name="ingredients[]" size="13">
                                 {% for i in ingredients %}
-                                <option value = "{{i}}">{{i.name}}</option>
+                                <option value = "{{i.id}}">{{i.name}}</option>
                                 {% endfor %}
                             </select>
                                 </div>

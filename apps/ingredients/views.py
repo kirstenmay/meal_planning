@@ -10,5 +10,5 @@ def add_ingredient(request):
             messages.error(request,value, extra_tags=key)
         return redirect('/ingredients/')
     else:
-        Ingredient.objects.create(name=request.POST['name'],description=request.POST['description'],price=['price'])
+        Ingredient.objects.create(name=request.POST['name'],description=request.POST['description'],price=request.POST['price'])
         return redirect('/ingredients/')
