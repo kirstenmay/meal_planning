@@ -35,28 +35,34 @@
                 </ul>
             </div>
         </nav>
-        <div class="row justify-content-center">
-            <div class="col-8" style="text-align: center;">
-                <h3>Add Recipe</h3>
+        <div class="row justify-content-center" style="margin-top: 20px;">
+            <div class="col-12" style="text-align: center;">
+                <h2>Add Recipe</h2>
                 <div class="form-group">
                     <form action="add_recipe" method="POST">
                         {% csrf_token %}
-                        <label for="name">Recipe Name</label>
-                        <input type="text" name="name" class="form-control">
-                        <label for="description">Description</label>
-                        <textarea name="description" class="form-control" rows="4"></textarea>
-                        <label for="directions">Directions</label>
-                        <textarea name="directions" class="form-control" rows="4"></textarea>
-                        <div class="form-group">
-                            <label for="ingredients">Select Ingredients</label>
-                            <select multiple class="form-control" id="ingredients" name="ingredients">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name">Recipe Name</label>
+                                <input type="text" name="name" class="form-control">
+                                <label for="description">Description</label>
+                                <textarea name="description" class="form-control" rows="2"></textarea>
+                                <label for="directions">Directions</label>
+                                <textarea name="directions" class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="col-5 offset-1">
+                                <div class="form-group">
+                                    <label for="ingredients">Select Ingredients</label>
+                                    <select multiple class="form-control" id="ingredients" name="ingredients[]" size="13">
                                 {% for i in ingredients %}
-                                <option value = "{{i}}">{{i.name}}</option>
+                                <option value = "{{i.id}}">{{i.name}}</option>
                                 {% endfor %}
                             </select>
+                                </div>
+                            </div>
                         </div>
                         <a href="#" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
-                            <a href="submit" class = "btn btn-outline-info" style="margin-top: 20px;">Add Recipe</a>
+                            <input type="submit" class="btn btn-outline-info" value = "Add Recipe" style="margin-top: 20px;">
                         </span>
                     </form>
                 </div>
