@@ -1,5 +1,4 @@
 from django.db import models
-from apps.login_reg.models import *
 from apps.recipes.models import *
 
 class Ingredient(models.Model):
