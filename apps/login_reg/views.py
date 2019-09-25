@@ -40,10 +40,15 @@ def login(request):
         
 
 def user_profile(request):
-    if 'userid' in request.session:
-        return render(request, 'login_reg/user_profile.html')
-    else: 
+    if 'userid' not in request.session: 
         return redirect('/')
+    else:
+        context = {
+            "user" : User.objects.get(id=request.session['userid']),
+            "this_users_recipes" : User.objects.get(id=request.session['userid']),
+        }
+
+    return render(request, 'login_reg/user_profile.html', context)
 
 def log_out(request):
     request.session.clear()
