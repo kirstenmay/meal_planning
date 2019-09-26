@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from apps.recipes.models import *
 from .models import User
 import bcrypt
 import datetime
@@ -21,30 +22,35 @@ def register(request):
         request.session['userid'] = new_user.id
         username = new_user.first_name
         request.session['username'] = username
-        return redirect("/success")
+        return redirect("/user_profile")
 
 def login(request):
     errors = User.objects.login_validator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
-        return redirect("/")
+        return redirect('/')
     else:
         user = User.objects.filter(email = request.POST['login_email'])
         logged_user = user[0]
         request.session['userid'] = logged_user.id
         username = logged_user.first_name
         request.session['username'] = username
-        return redirect('/success')
+        return redirect('/user_profile')
         
 
-def success(request):
-    if 'userid' in request.session:
-        return render(request, 'login_reg/success.html')
-    else: 
-        return redirect("/")
+def user_profile(request):
+    if 'userid' not in request.session: 
+        return redirect('/')
+    else:
+        context = {
+            "user" : User.objects.get(id=request.session['userid']),
+            "this_users_recipes" : User.objects.get(id=request.session['userid']),
+        }
+
+    return render(request, 'login_reg/user_profile.html', context)
 
 def log_out(request):
     request.session.clear()
-    return redirect("/")
+    return redirect('/')
 
