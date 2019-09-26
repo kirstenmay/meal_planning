@@ -15,6 +15,7 @@ class IngredientMananger(models.Manager):
         except:
             errors['price']= 'Price must be a number'
         return errors
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()

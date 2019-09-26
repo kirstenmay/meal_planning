@@ -10,24 +10,24 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'recipes/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'ingredients/css/bootstrap.css' %}">
     <title>Meal planner</title>
 </head>
 
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Welcome {{request.session.username}}</a>
+            <a class="navbar-brand" href="/user_profile">Welcome, {{request.session.username}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/recipes/new_recipe">Add A Recipe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Find a Meal</a>
+                        <a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/log_out">Logout</a>
@@ -42,32 +42,18 @@
                     <form action="/ingredients/add_ingredient" method="POST">
                         {% csrf_token %}
                         <label for="name">Ingredient Name</label>
-                        <input type="text" name="name" class="form-control">
-                        {% if messages %}
-                        {% for message in messages %}
-                        {% if message.extra_tags == 'name' %}
+                        <input type="text" name="name" class="form-control"> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'name' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
-                        {% endif %}
-                        {% endfor %}
-                        {% endif %}
+                        {% endif %} {% endfor %} {% endif %}
                         <label for="description">Description</label>
-                        <textarea name="description" class="form-control" rows="4"></textarea>
-                        {% if messages %}
-                        {% for message in messages %}
-                        {% if message.extra_tags == 'description' %}
+                        <textarea name="description" class="form-control" rows="4"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'description' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
-                        {% endif %}
-                        {% endfor %}
-                        {% endif %}
+                        {% endif %} {% endfor %} {% endif %}
                         <label for="price">Price</label>
-                        <input type="text" name = 'price' class="form-control" ></textarea>
-                        {% if messages %}
-                        {% for message in messages %}
-                        {% if message.extra_tags == 'price' %}
+                        <input type="text" name='price' class="form-control"></textarea>
+                        {% if messages %} {% for message in messages %} {% if message.extra_tags == 'price' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
-                        {% endif %}
-                        {% endfor %}
-                        {% endif %}
+                        {% endif %} {% endfor %} {% endif %}
                         <a href="#" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
                             <input type='submit' class = "btn btn-outline-info" style="margin-top: 20px;" value= 'Add Ingredient'>
                         </span>
