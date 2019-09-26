@@ -25,6 +25,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+<<<<<<< HEAD
                 <ul class="navbar-nav col-11">
                     <li class="nav-item active"><a class="nav-link" href="/ingredients">+Ingredient</a></li><a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a></li>
                 </ul>
@@ -48,6 +49,52 @@
                                     <textarea name="description" class="form-control" rows="2"></textarea>
                                     <label for="directions">Directions</label>
                                     <textarea name="directions" class="form-control" rows="4"></textarea>
+=======
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/ingredients">+Ingredient</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/log_out">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="row justify-content-center" style="margin-top: 20px;">
+            <div class="col-12" style="text-align: center;">
+                <h2>Add Recipe</h2>
+                <div class="form-group">
+                    <form action="add_recipe" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="name">Recipe Name</label>
+                                <input type="text" name="name" class="form-control"> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'name' %}
+                                <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                {% endif %} {% endfor %} {% endif %}
+                                <label for="description">Description</label>
+                                <textarea name="description" class="form-control" rows="2"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'description' %}
+                                <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                {% endif %} {% endfor %} {% endif %}
+                                <label for="directions">Directions</label>
+                                <textarea name="directions" class="form-control" rows="4"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'directions' %}
+                                <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                {% endif %} {% endfor %} {% endif %}
+                            </div>
+                            <div class="col-5 offset-1">
+                                <div class="form-group">
+                                    <label for="ingredients">Select Ingredients</label>
+                                    <select multiple class="form-control" id="ingredients" name="ingredients[]" size="13">
+                                {% for i in ingredients %}
+                                <option value = "{{i.id}}">{{i.name}}</option>
+                                {% endfor %}
+                            </select> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'ingredients' %}
+                                    <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                    {% endif %} {% endfor %} {% endif %}
+>>>>>>> 25d6090f324e3886c8598543632d2fc15d34a177
                                 </div>
                                 <div class="col-5 offset-1">
                                     <div class="form-group">
@@ -64,11 +111,23 @@
                                 <label for="review">Add a Recipe Review (optional)</label>
                                 <textarea name="review" id="review" rows="4" class="form-control"></textarea>
                             </div>
+<<<<<<< HEAD
                             <a href="#" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
                                 <input type="submit" class="btn btn-outline-info" value = "Add Recipe" style="margin-top: 20px;">
                             </span>
                         </form>
                     </div>
+=======
+                        </div>
+                        <div class="col-8 offset-2" style="margin-top: 20px;">
+                            <label for="review">Add a Recipe Review (optional)</label>
+                            <textarea name="review" id="review" rows="4" class="form-control"></textarea>
+                        </div>
+                        <a href="/user_profile" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
+                            <input type="submit" class="btn btn-outline-info" value = "Add Recipe" style="margin-top: 20px;">
+                        </span>
+                    </form>
+>>>>>>> 25d6090f324e3886c8598543632d2fc15d34a177
                 </div>
             </div>
         </div>
