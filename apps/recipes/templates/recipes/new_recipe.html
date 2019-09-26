@@ -67,16 +67,6 @@
                                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
                                         {% endif %} {% endfor %} {% endif %}
                                     </div>
-                                    <div class="col-5 offset-1">
-                                        <div class="form-group">
-                                            <label for="ingredients">Select Ingredients</label>
-                                            <select multiple class="form-control" id="ingredients" name="ingredients[]" size="13">
-                                        {% for i in ingredients %}
-                                        <option value = "{{i.id}}">{{i.name}}</option>
-                                        {% endfor %}
-                                    </select>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="col-8 offset-2" style="margin-top: 20px;">
                                     <label for="review">Add a Recipe Review (optional)</label>
