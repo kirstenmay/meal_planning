@@ -40,32 +40,8 @@
         </div>
     </nav>
         
-        <div class="container">
-            <div class="row">
-
-                <!-- PROFILE COLUMN -->
-                <div class="col-4">
-                    <img src="/static/img/mockProfImage.jpg" id="profilePicture" alt="blueberries">
-                    <h3>{{user.first_name}}</h3>
-                    <p>{{user.created_at|date:"M d, Y"}}</p>
-                    <p><span style="border-bottom: 1px solid black; width: 100%;">MY RECIPES</span></p>
-                    {% for recipe in this_users_recipes %}
-                    <li><a href="/recipes/view_recipe/{{recipe.id}}">{{recipe.name}}</a></li>
-                    {% endfor %}
-                </div>
-
-                <!-- MAIN CONTENT -->
-                <div class="col-8">
-                    <table class="table">
-                        <tbody>
-                            {% for recipe in this_user_has_made %}
-                            <tr>{{recipe.name}}</tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        <h3>{{recipe.name}}</h3>
     </div>
 </body>
 

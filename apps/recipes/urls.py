@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     url(r'^add_recipe$', views.add_recipe),
     url(r'^new_recipe$', views.new_recipe),
+    url(r'^view_recipe/(?P<id>\d+)$', views.view_recipe, name="view_recipe"),
 ]
