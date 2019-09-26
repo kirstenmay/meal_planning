@@ -8,26 +8,47 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> {% load static %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'ingredients/css/bootstrap.css' %}">
     <title>Meal planner</title>
 </head>
 
+<script>
+    $(document).ready(function() {
+        $("#search_bar").keyup(function() {
+            var POST = {}
+            POST['from_ajax'] = $(this)[0].value;
+            $.ajax({
+                url: '/ingredients/api/ing_search',
+                method: 'post',
+                data: $("#rec_form").serialize(),
+                success: function(serverResponse) {
+                    console.log(serverResponse)
+                    $("#ingredients").html(serverResponse)
+                }
+            })
+        })
+        $('#add_ingredient').click(function() {
+
+        })
+    })
+</script>
+
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
-            <a class="navbar-brand" href="/user_profile">Welcome {{request.session.username}}</a>
+            <a class="navbar-brand" href="/user_profile">Welcome, {{request.session.username}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/ingredients/">Add an Ingredient</a>
+                        <a class="nav-link" href="/ingredients/">+Ingredient</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recipes/new_recipe">Add A Recipe</a>
+                        <a class="nav-link" href="/recipes/new_recipe">+Recipe</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/log_out">Logout</a>
@@ -35,18 +56,35 @@
                 </ul>
             </div>
         </nav>
+        <h3 style="text-align: center;">Select up to 6 ingredients</h3>
         <div class="row">
-            <div class="col-4">
-                <form action="#" methods="POST">
+            <div class="col-4 offset-1">
+                <form action="/search_recipe" id="rec_form" methods="POST">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <label for="ingredients">Select Ingredients</label>
-                        <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
-                        {% for i in all_ingredients %}
-                        <option value = "{{i.id}}">{{i.name}}</option>
-                        {% endfor %}
-                    </select>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <div class="col-12">
+                                <input class="form-control mr-sm-2" type="search" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
+                            </div>
+                        </div>
+                        <div id="add_ingredient">
+                            <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
+                                {% for i in all_ingredients %}
+                                <option value = "{{i.id}}" class = "ingredient">{{i.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <button class="btn btn-outline-info my-2 my-sm-0">Add</button>
+                        </div>
                     </div>
+                    <input type="submit" class="btn btn-outline-info" value="Find Recipes">
                 </form>
+            </div>
+            <div class="col-6 offset-1" id="selected_ingredient">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8" id="recipes_found">
+                PLACEHOLDER
             </div>
         </div>
     </div>

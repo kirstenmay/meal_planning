@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/recipes/new_recipe">Add A Recipe</a>
+                        <a class="nav-link" href="/recipes/new_recipe">+Recipe</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a>
@@ -54,7 +54,7 @@
                         {% if messages %} {% for message in messages %} {% if message.extra_tags == 'price' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
                         {% endif %} {% endfor %} {% endif %}
-                        <a href="#" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
+                        <a href="/user_profile" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
                             <input type='submit' class = "btn btn-outline-info" style="margin-top: 20px;" value= 'Add Ingredient'>
                         </span>
                     </form>

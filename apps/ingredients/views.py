@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Ingredient
 from django.contrib import messages
 
@@ -20,6 +20,19 @@ def add_ingredient(request):
 
 def find_recipe(request):
     context = {
-        'all_ingredients': Ingredient.objects.all()
+        'all_ingredients': Ingredient.objects.all(),
     }
     return render(request, 'ingredients/find_recipe.html', context)
+
+def dynamic_ingredients(request):
+    pass
+
+def dynamic_search(request):
+    stuff = Ingredient.objects.filter(name__icontains=request.POST['srch'])
+    strng = ""
+    for thing in stuff:
+        strng += f"<option value={thing.id}>{thing.name}</option>"
+    return HttpResponse(strng)
+
+def search_recipe(request):
+    pass

@@ -7,11 +7,9 @@ class recipe_manager(models.Manager):
        if len(postData['name']) < 3:
            errors['name'] = "A recipe name must be at least 3 characters"
        if len(postData['description']) < 3:
-           errors['name'] = "A description must be provided"
+           errors['description'] = "A description must be provided"
        if len(postData['directions']) < 10:
            errors['directions'] = "Directions must be provided"
-       if len(postData['ingredients[]']) < 1:
-           errors['ingredients[]'] = "Ingredients must be added to post a new recipe"
        return errors
 
 class Recipe(models.Model):
