@@ -19,7 +19,7 @@ def add_recipe(request):
                 messages.error(request, value, extra_tags=key)
             return redirect("/recipes/new_recipe")
     user = User.objects.get(id = request.session['userid'])
-    recipe = Recipe.objects.create(name = request.POST['name'], description = request.POST['description'], directions = request.POST['directions'])
+    recipe = Recipe.objects.create(name = request.POST['name'], description = request.POST['description'], directions = request.POST['directions'], creator=user)
     options = request.POST.getlist('ingredients[]')
     for i in options:
         this_ingredient = i
@@ -29,3 +29,11 @@ def add_recipe(request):
     if len(request.POST['review']) > 0:
         review = Review.objects.create(review = request.POST['review'], user = user, recipe = recipe)
     return redirect("/recipes/new_recipe")
+
+def view_recipe(request, id):
+
+    context = {
+        "recipe" : Recipe.objects.get(id=id),
+    }
+
+    return render(request, 'recipes/view_recipe.html', context)
