@@ -21,28 +21,47 @@
 </head>
 
 <body>
-    <div class="jumbotron">
-        <a href="/log_out" class="btn btn-link float-right">Log Out</a>
-    </div>
-    <div class="container">
-        <div class="row">
-
-            <!-- PROFILE COLUMN -->
-            <div class="col-4">
-                <img src="/static/img/mockProfImage.jpg" id="profilePicture" alt="blueberries">
-                <h3>{{user.first_name}}</h3>
-                <p>{{user.created_at|date:"M d, Y"}}</p>
-                <p><span style="border-bottom: 1px solid black; width: 100%;">MY RECIPES</span></p>
+    <!-- NAV BAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
+        <div class="container">
+            <a class="navbar-brand" href="/user_profile">Welcome, {{request.session.username}}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/ingredients/">+Ingredient</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recipes/new_recipe">+Recipe</a>
+                    </li>
+                    <a class="nav-link" href="/log_out">Logout</a>
+                </ul>
             </div>
+        </div>
+    </nav>
+        
+        <div class="container">
+            <div class="row">
 
-            <!-- MAIN CONTENT -->
-            <div class="col-8">
-                <div>
-                    <h3>BLUEBERRY SCONES</h3>
-                    <p>September 2019</p>
-                    <img src="/static/img/blueberryScones.jpg" class="recipeImage" alt="blueberry scones">
-                    <h6>INGREDIENTS:</h6>
-                    <h6>DIRECTIONS:</h6>
+                <!-- PROFILE COLUMN -->
+                <div class="col-4">
+                    <img src="/static/img/mockProfImage.jpg" id="profilePicture" alt="blueberries">
+                    <h3>{{user.first_name}}</h3>
+                    <p>{{user.created_at|date:"M d, Y"}}</p>
+                    <p><span style="border-bottom: 1px solid black; width: 100%;">MY RECIPES</span></p>
+                </div>
+
+                <!-- MAIN CONTENT -->
+                <div class="col-8">
+                    <div>
+                        <h3>BLUEBERRY SCONES</h3>
+                        <p>September 2019</p>
+                        <img src="/static/img/blueberryScones.jpg" class="recipeImage" alt="blueberry scones">
+                        <h6>INGREDIENTS:</h6>
+                        <h6>DIRECTIONS:</h6>
+                    </div>
                 </div>
             </div>
         </div>
