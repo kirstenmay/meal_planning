@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Ingredient
+from apps.recipes.models import *
 from django.contrib import messages
-
 
 
 def ingredient(request):
@@ -24,8 +24,12 @@ def find_recipe(request):
     }
     return render(request, 'ingredients/find_recipe.html', context)
 
-def dynamic_ingredients(request):
-    pass
+def select_ingredient(request):
+    string = ""
+    choice = request.POST.getlist('ingredients[]')
+    for item in choice:
+        string += f"<li><input type='hidden' name='sel_ingredients[]' value='{item}'>{Ingredient.objects.get(id=item).name}</li>"
+    return HttpResponse(string)
 
 def dynamic_search(request):
     stuff = Ingredient.objects.filter(name__icontains=request.POST['srch'])

@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='recipe',
             name='creator',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='recipe_creator', to='login_reg.User'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='recipe_creator', to='login_reg.User'),
             preserve_default=False,
         ),
         migrations.AddField(

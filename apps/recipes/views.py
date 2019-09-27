@@ -32,7 +32,6 @@ def add_recipe(request):
     return redirect("/recipes/new_recipe")
 
 def view_recipe(request, id):
-
     context = {
         "recipe" : Recipe.objects.get(id=id),
     }

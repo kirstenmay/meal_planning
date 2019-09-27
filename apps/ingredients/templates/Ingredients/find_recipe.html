@@ -16,9 +16,7 @@
 
 <script>
     $(document).ready(function() {
-        $("#search_bar").keyup(function() {
-            var POST = {}
-            POST['from_ajax'] = $(this)[0].value;
+        function mainFunc() {
             $.ajax({
                 url: '/ingredients/api/ing_search',
                 method: 'post',
@@ -28,9 +26,29 @@
                     $("#ingredients").html(serverResponse)
                 }
             })
-        })
-        $('#add_ingredient').click(function() {
+        }
 
+        function clear_search() {
+            $('#search_bar').val('');
+            $('option:selected').prop('selected', false);
+            mainFunc()
+        }
+        $("#search_bar").keyup(function() {
+            var POST = {}
+            POST['from_ajax'] = $(this)[0].value;
+            mainFunc()
+        })
+        $(document).on('click', '#add_button', function(e) {
+            e.preventDefault(),
+                $.ajax({
+                    url: $(this).attr('href'),
+                    method: 'post',
+                    data: $('#rec_form').serialize(),
+                    success: function(serverResponse) {
+                        $("#ing_list").append(serverResponse)
+                    }
+                })
+            clear_search();
         })
     })
 </script>
@@ -56,30 +74,37 @@
                 </ul>
             </div>
         </nav>
-        <h3 style="text-align: center;">Select up to 6 ingredients</h3>
+        <h3 style="text-align: center;">Select up to 8 ingredients</h3>
         <div class="row">
-            <div class="col-4 offset-1">
-                <form action="/search_recipe" id="rec_form" methods="POST">
+            <div class="col-10 offset-1">
+                <form action="/ingredients/search_recipe" id="rec_form" methods="POST">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <div class="row" style="margin-bottom: 10px;">
-                            <div class="col-12">
-                                <input class="form-control mr-sm-2" type="search" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
-                            </div>
-                        </div>
-                        <div id="add_ingredient">
-                            <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-12">
+                                        <input class="form-control mr-sm-2" type="text" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
+                                    </div>
+                                </div>
+                                <div id="add_ingredient">
+                                    <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
                                 {% for i in all_ingredients %}
                                 <option value = "{{i.id}}" class = "ingredient">{{i.name}}</option>
                                 {% endfor %}
                             </select>
-                            <button class="btn btn-outline-info my-2 my-sm-0">Add</button>
+                                    <a href="/ingredients/select_ingredient" id="add_button" style="margin-left: 250px;">Add</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 offset-2">
+                            <ul id="ing_list"></ul>
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-outline-info" value="Find Recipes">
+                    <div class="row justify-content-end">
+                        <input type="submit" class="btn btn-outline-info" value="Find Recipes">
+                    </div>
                 </form>
-            </div>
-            <div class="col-6 offset-1" id="selected_ingredient">
             </div>
         </div>
         <div class="row">
