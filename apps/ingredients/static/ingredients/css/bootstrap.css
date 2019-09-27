@@ -1963,7 +1963,7 @@ pre code {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border-radius: 0.1rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -3749,7 +3749,7 @@ input[type="button"].btn-block {
     white-space: nowrap;
     background-color: #e9ecef;
     border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    border-radius: 0.1rem;
 }
 
 .input-group-text input[type="radio"],
@@ -6862,7 +6862,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-    background-color: #f8f9fa !important;
+    background-color: rgb(184, 178, 166, 0.3) !important;
 }
 
 a.bg-light:hover,
