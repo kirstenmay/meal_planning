@@ -31,7 +31,17 @@ def add_recipe(request):
         review = Review.objects.create(review = request.POST['review'], user = user, recipe = recipe)
     return redirect("/recipes/new_recipe")
 
+def try_recipe(request, id):
+    if 'userid' not in request.session:
+        return redirect("/")
+    recipe = Recipe.objects.get(id =id)
+    user = User.objects.get(id = request.session['userid'])
+    recipe.recipe_users.add(user)
+    return redirect(f"/recipes/view_recipe/{recipe.id}")
+
 def view_recipe(request, id):
+    if 'userid' not in request.session:
+        return redirect("/")
     context = {
         "recipe" : Recipe.objects.get(id=id),
     }

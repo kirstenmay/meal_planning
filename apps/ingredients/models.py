@@ -16,6 +16,9 @@ class IngredientMananger(models.Manager):
             errors['price']= 'Price must be a number'
         return errors
 
+    def find_recipe_val(self, postData):
+        errors = {}
+        return errors
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
