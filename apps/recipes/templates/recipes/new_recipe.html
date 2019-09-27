@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'recipes/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'recipes/css/style.css' %}">
     <title>Add Recipe</title>
 
     <!-- FONTS -->
@@ -26,7 +27,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav col-11">
-                    <li class="nav-item active"><a class="nav-link" href="/ingredients">+Ingredient</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ingredients">+Ingredient</a></li>
                     <li class="nav-item"><a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a></li>
                 </ul>
                 <ul class="navbar-nav col-1">
@@ -35,46 +36,50 @@
             </div>
         </nav>
         <div class="container">
-            <div class="row justify-content-center" style="margin-top: 20px;">
+            <div class="row justify-content-center" style="margin-top: 3%;">
                 <div class="col-12" style="text-align: center;">
-                    <h2>Add Recipe</h2>
+                    <h3>Add New Recipe</h3>
                     <div class="form-group">
-                        <form action="add_recipe" method="POST">
+                        <form action="add_recipe" method="POST" style="margin-top: 3%">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-6">
-                                    <label for="name">Recipe Name</label>
-                                    <input type="text" name="name" class="form-control"> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'name' %}
-                                    <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                <div class="col-8 offset-2">
+                                    <!-- RECIPE NAME -->
+                                    <input type="text" name="name" class="form-control" placeholder="Recipe Name"> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'name' %}
+                                    <p style="color: rgb(255, 10, 10)">{{ message }}</p>
                                     {% endif %} {% endfor %} {% endif %}
-                                    <label for="description">Description</label>
-                                    <textarea name="description" class="form-control" rows="2"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'description' %}
-                                    <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+
+                                    <!-- DESCRIPTION -->
+                                    <textarea name="description" class="form-control" rows="2" placeholder="Description"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'description' %}
+                                    <p style="color: rgb(255, 10, 10)">{{ message }}</p>
                                     {% endif %} {% endfor %} {% endif %}
-                                    <label for="directions">Directions</label>
-                                    <textarea name="directions" class="form-control" rows="4"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'directions' %}
-                                    <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                    
+                                    <!-- DIRECTIONS -->
+                                    <textarea name="directions" class="form-control" rows="4" placeholder="Directions"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'directions' %}
+                                    <p style="color: rgb(255, 10, 10)">{{ message }}</p>
                                     {% endif %} {% endfor %} {% endif %}
-                                </div>
-                                <div class="col-5 offset-1">
-                                    <div class="form-group">
-                                        <label for="ingredients">Select Ingredients</label>
-                                        <select multiple class="form-control" id="ingredients" name="ingredients[]" size="13">
-                                    {% for i in ingredients %}
-                                    <option value = "{{i.id}}">{{i.name}}</option>
-                                    {% endfor %}
-                                </select> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'ingredients' %}
-                                        <p style="color: rgb(255, 10, 10);">{{ message }}</p>
-                                        {% endif %} {% endfor %} {% endif %}
+
+                                    <!-- SELECT INGREDIENTS -->
+                                        <div class="form-group col-6 offset-3">
+                                            <label for="ingredients">Select Ingredients</label>
+                                            <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
+                                        {% for i in ingredients %}
+                                        <option value = "{{i.id}}">{{i.name}}</option>
+                                        {% endfor %}
+                                    </select> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'ingredients' %}
+                                            <p style="color: rgb(255, 10, 10);">{{ message }}</p>
+                                            {% endif %} {% endfor %} {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <!-- ADD REVIEW -->
+                                    <div class="col-8 offset-2" style="margin-top: 20px;">
+                                        <label for="review">Add a Recipe Review (optional)</label>
+                                        <textarea name="review" id="review" rows="4" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-8 offset-2" style="margin-top: 20px;">
-                                    <label for="review">Add a Recipe Review (optional)</label>
-                                    <textarea name="review" id="review" rows="4" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <a href="/user_profile" class="btn btn-outline-info" style="margin-top: 20px;">Cancel</a><span>
-                                <input type="submit" class="btn btn-outline-info" value = "Add Recipe" style="margin-top: 20px;">
+                            <a href="/user_profile" class="btn btn-outline-info" style="margin-top: 20px;" id="cancel">Cancel</a><span>
+                                <input type="submit" class="btn btn-outline-info" value = "Add" style="margin-top: 20px;" id="add_recipe">
                             </span>
                         </form>
                     </div>
