@@ -80,36 +80,46 @@
         <h3 style="text-align: center;">Select up to 8 Ingredients</h3>
         <div class="row">
             <div class="col-10 offset-1">
+                <!-- ENTIRE PAGE IS A FORM -->
+                <!-- Keep everything in the form -->
                 <form action="/ingredients/search_recipe" id="rec_form" method="POST">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
+                                <!-- SEARCH BAR -->
                                 <div class="row" style="margin-bottom: 10px;">
                                     <div class="col-12">
                                         <input class="form-control mr-sm-2" type="text" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
                                     </div>
                                 </div>
+                                <!-- MULTI_SELECT BOX -->
+                                <!-- Dont move anything out of this div -->
                                 <div id="add_ingredient">
                                     <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
                                 {% for i in all_ingredients %}
                                 <option value = "{{i.id}}" class = "ingredient">{{i.name}}</option>
                                 {% endfor %}
                             </select>
+                                    <!-- ADD LINK -->
                                     <a href="/ingredients/select_ingredient" id="add_button" style="margin-left: 250px;">Add</a>
                                 </div>
                             </div>
                         </div>
+                        <!-- DISPLAY SELECTED INGREDIENTS -->
+                        <!-- Don't get rid of the id. Keep ul in div - style div however -->
                         <div class="col-sm-6 offset-2">
                             <ul id="ing_list"></ul>
                         </div>
                     </div>
+                    <!-- SUBMIT BUTTON -->
                     <div class="row justify-content-end">
                         <input type="submit" class="btn btn-outline-info" value="Find Recipes" id="display_recipes">
                     </div>
                 </form>
             </div>
         </div>
+        <!-- ALL MATCHED RECIPES -->
         <div class="row">
             <div class="col-8" id="recipes_found">
             </div>
