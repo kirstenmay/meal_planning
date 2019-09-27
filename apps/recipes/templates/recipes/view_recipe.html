@@ -30,9 +30,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav col-11">
                     <li class="nav-item active"><a class="nav-link" href="/user_profile">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="/recipes/new_recipe">+Recipe</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="/ingredients/">+Ingredient</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recipes/new_recipe">+Recipe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ingredients/">+Ingredient</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a></li>
                 </ul>
                 <ul class="navbar-nav col-1 text-right">
                     <a href="/log_out">Logout</a>
@@ -44,7 +44,7 @@
     <div class="container">
         <h3>{{recipe.name}}</h3>
         <p>{{recipe.created_at|date:"F Y"}}</p>
-        <img src="/static/img/blueberryScones.jpg" class="recipeImage" alt="blueberry scones">
+        <img src="/static/login_reg/img/blueberryScones.jpg" class="recipeImage" alt="blueberry scones">
         <p class="uppercase">ingredients:</p>
         {% for ingredient in recipe.ingredients.all %}
         <p>{{ingredients.name}}</p>

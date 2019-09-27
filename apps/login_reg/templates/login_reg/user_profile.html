@@ -51,7 +51,7 @@
                 <p>{{user.created_at|date:"M d, Y"}}</p>
                 <p class="underline">MY RECIPES</p>
                 {% for recipe in this_users_recipes %}
-                <a href="/recipes/view_recipe/{{recipe.id}}">{{recipe.name}}</a> {% endfor %}
+                <a href="/recipes/view_recipe/{{recipe.id}}" class="my_recipes">{{recipe.name}}</a> {% endfor %}
             </div>
 
             <!-- MAIN CONTENT -->
