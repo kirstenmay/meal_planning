@@ -9,6 +9,9 @@ import datetime
 def login_reg(request):
     return render(request, 'login_reg/register.html')
 
+def sign_up(request):
+    return render(request, 'login_reg/signup.html')
+
 def register(request):
     errors = User.objects.reg_validator(request.POST)
     if len(errors) > 0:
