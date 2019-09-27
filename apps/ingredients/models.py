@@ -16,8 +16,10 @@ class IngredientMananger(models.Manager):
             errors['price']= 'Price must be a number'
         return errors
 
-    def find_recipe_val(self, postData):
+    def find_recipe_val(self, counter):
         errors = {}
+        if counter > 8:
+            errors['ingredients'] = "You can only add up to 8 ingredients"
         return errors
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
