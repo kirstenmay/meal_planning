@@ -77,10 +77,10 @@
                 </ul>
             </div>
         </nav>
-        <h3 style="text-align: center;">Select up to 8 ingredients</h3>
+        <h3 style="text-align: center;">Select up to 8 Ingredients</h3>
         <div class="row">
             <div class="col-10 offset-1">
-                <form action="/ingredients/search_recipe" id="rec_form" methods="POST">
+                <form action="/ingredients/search_recipe" id="rec_form" method="POST">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-sm-4">
@@ -105,14 +105,13 @@
                         </div>
                     </div>
                     <div class="row justify-content-end">
-                        <input type="submit" class="btn btn-outline-info" value="Find Recipes">
+                        <input type="submit" class="btn btn-outline-info" value="Find Recipes" id="display_recipes">
                     </div>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-8" id="recipes_found">
-                PLACEHOLDER
             </div>
         </div>
     </div>

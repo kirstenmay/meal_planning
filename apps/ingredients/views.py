@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from .models import Ingredient
 from apps.recipes.models import *
 from django.contrib import messages
+import math
 
 
 def ingredient(request):
@@ -9,6 +10,8 @@ def ingredient(request):
 
 
 def add_ingredient(request):
+    if 'userid' not in request.session:
+        return redirect("/")
     errors = Ingredient.objects.ingredient_validator(request.POST) 
     if len(errors)>0:
         for key,value in errors.items():
@@ -19,6 +22,8 @@ def add_ingredient(request):
         return redirect('/ingredients/')
 
 def find_recipe(request):
+    if 'userid' not in request.session:
+        return redirect("/")
     context = {
         'all_ingredients': Ingredient.objects.all(),
     }
@@ -27,8 +32,10 @@ def find_recipe(request):
 def select_ingredient(request):
     string = ""
     choice = request.POST.getlist('ingredients[]')
+    counter = 0
     for item in choice:
-        string += f"<li><input type='hidden' name='sel_ingredients[]' value='{item}'>{Ingredient.objects.get(id=item).name}</li>"
+        counter += 1
+        string += f"<li><input type='hidden' value='{item}' name = 'ingredient_{counter}'>{Ingredient.objects.get(id=item).name}</li>"
     return HttpResponse(string)
 
 def dynamic_search(request):
@@ -39,4 +46,29 @@ def dynamic_search(request):
     return HttpResponse(strng)
 
 def search_recipe(request):
-    pass
+    if 'userid' not in request.session:
+        return redirect("/")
+    ingredients =[]
+    for stuff in request.POST:
+        if stuff != 'csrfmiddlewaretoken' and stuff != 'srch':
+            ingredients.append(Ingredient.objects.get(id = request.POST[stuff]))  
+    matching_recipes = []
+    for ingredient in ingredients:
+        qs2 = Recipe.objects.filter(ingredients=ingredient)    
+        for recipe in qs2:
+            if recipe not in matching_recipes:
+                matching_recipes.append(recipe)
+    match_percentages = []
+    for recipe in matching_recipes:
+        counter = 0
+        for ingredient in ingredients:
+            if ingredient in recipe.ingredients.all():
+                counter+=1
+        match_percentages.append(math.floor((counter / len(ingredients))*100))
+    all_things = []
+    for i in range(len(matching_recipes)):
+        all_things.append({ 'recipe': matching_recipes[i], 'percentage': match_percentages[i]})
+    context = {
+        'recipes': all_things, 
+    }
+    return render(request, 'ingredients/matched_recipes.html', context)

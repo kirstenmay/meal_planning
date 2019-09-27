@@ -4,6 +4,7 @@ from . import views
 # all urls on this app start with "recipes/"
 
 urlpatterns = [
+    url(r'^try/(?P<id>\d+)$', views.try_recipe),
     url(r'^add_recipe$', views.add_recipe),
     url(r'^new_recipe$', views.new_recipe),
     url(r'^view_recipe/(?P<id>\d+)$', views.view_recipe, name="view_recipe"),
