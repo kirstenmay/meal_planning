@@ -51,6 +51,17 @@
                     data: $('#rec_form').serialize(),
                     success: function(serverResponse) {
                         $("#ing_list").append(serverResponse)
+                    },
+                    error:function(serverResponse) {
+                        var messages = ` {% if messages %}
+                                {% for message in messages %}
+                                {% if message.extra_tags == 'ingredients' %}
+                                <p style="color: rgb(255, 10, 10);">{{message }}</p>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}`
+                        $('#validations').html(messages)
+
                     }
                 })
             clear_search();
@@ -106,6 +117,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id = 'validations'>
+                               </div>
                             <!-- DISPLAY SELECTED INGREDIENTS -->
                             <!-- Don't get rid of the id. Keep ul in div - style div however -->
                             <div class="col-sm-6 offset-2">

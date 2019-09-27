@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Ingredient
+from django.http import JsonResponse
 from apps.recipes.models import *
 from django.contrib import messages
 import math
@@ -39,6 +40,7 @@ def select_ingredient(request):
         if len(errors)>0:
             for key,value in errors.items():
                 messages.error(request,value, extra_tags=key)
+                return JsonResponse({error: 403 })
         string += f"<li><input type='hidden' value='{item}' name = 'ingredient_{counter}'>{Ingredient.objects.get(id=item).name}</li>"
     return HttpResponse(string)
 

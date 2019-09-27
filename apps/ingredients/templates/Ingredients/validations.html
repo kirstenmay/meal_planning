@@ -1,0 +1,7 @@
+{% if messages %}
+{% for message in messages %}
+{% if message.extra_tags == 'ingredients' %}
+<p style="color: rgb(255, 10, 10);">{{message }}</p>
+{% endif %}
+{% endfor %}
+{% endif %}
