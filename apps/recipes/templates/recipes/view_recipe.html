@@ -40,14 +40,14 @@
             </div>
         </div>
     </nav>
-        
+
     <div class="container">
         <h3>{{recipe.name}}</h3>
         <p>{{recipe.created_at|date:"F Y"}}</p>
         <img src="/static/login_reg/img/blueberryScones.jpg" class="recipeImage" alt="blueberry scones">
         <p class="uppercase">ingredients:</p>
         {% for ingredient in recipe.ingredients.all %}
-        <p>{{ingredients.name}}</p>
+        <p>{{ingredient.name}}</p>
         {% endfor %}
         <p class="uppercase">directions:</p>
         <p>{{recipe.directions}}</p>

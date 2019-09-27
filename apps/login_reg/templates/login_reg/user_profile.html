@@ -69,14 +69,14 @@
                         <th>Directions</th>
                         <th>Ingredients</th>
                     </thead>
+                    {% for recipe in this_user_has_made %}
                     <tr>
-                        {% for recipe in this_user_has_made %}
                         <td>{{recipe.name}}</td>
                         <td>{{recipe.description}}</td>
                         <td>{{recipe.directions}}</td>
                         <td>{% for ingredient in recipe.ingredients.all %} {{ingredient.name}}, {% endfor %} </td>
-                        {% endfor %}
                     </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>
