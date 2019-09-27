@@ -74,51 +74,51 @@
                     <li class="nav-item"><a class="nav-link" href="/log_out">Logout</a></li>
                 </ul>
             </div>
-        </nav>
-        <div class="container" style="margin-top: 2%">
-            <h3>What's in your pantry?</h3>
-            <p>Select up to 8 ingredients:</p>
-            <div class="row">
-                <div class="col">
-                    <!-- ENTIRE PAGE IS A FORM -->
-                    <!-- Keep everything in the form -->
-                    <form action="/ingredients/search_recipe" id="rec_form" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <!-- SEARCH BAR -->
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input class="form-control mr-sm-2" type="text" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
-                                        </div>
+    </nav>
+    <div class="container" style="margin-top: 2%">
+        <h3>What's in your pantry?</h3>
+        <p>Select up to 8 ingredients:</p>
+        <div class="row">
+            <div class="col">
+                <!-- ENTIRE PAGE IS A FORM -->
+                <!-- Keep everything in the form -->
+                <form action="/ingredients/search_recipe" id="rec_form" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <!-- SEARCH BAR -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input class="form-control mr-sm-2" type="text" name="srch" placeholder="Search" aria-label="Search" id="search_bar">
                                     </div>
-                                    <!-- MULTI_SELECT BOX -->
-                                    <!-- Dont move anything out of this div -->
-                                    <div id="add_ingredient">
-                                        <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
+                                </div>
+                                <!-- MULTI_SELECT BOX -->
+                                <!-- Dont move anything out of this div -->
+                                <div id="add_ingredient">
+                                    <select multiple class="form-control" id="ingredients" name="ingredients[]" size="10">
                                     {% for i in all_ingredients %}
                                     <option value = "{{i.id}}" class = "ingredient">{{i.name}}</option>
                                     {% endfor %}
                                 </select>
-                                        <!-- ADD LINK -->
-                                        <a href="/ingredients/select_ingredient" id="add_button" class="col offset-10">Add</a>
-                                    </div>
+                                    <!-- ADD LINK -->
+                                    <a href="/ingredients/select_ingredient" id="add_button" class="col offset-10">Add</a>
                                 </div>
                             </div>
-                            <!-- DISPLAY SELECTED INGREDIENTS -->
-                            <!-- Don't get rid of the id. Keep ul in div - style div however -->
-                            <div class="col-sm-6 offset-2">
-                                <ul id="ing_list"></ul>
-                            </div>
                         </div>
-                        <!-- SUBMIT BUTTON -->
-                        <div class="row justify-content-end">
-                            <input type="submit" class="btn" value="Find Recipes" id="display_recipes">
+                        <!-- DISPLAY SELECTED INGREDIENTS -->
+                        <!-- Don't get rid of the id. Keep ul in div - style div however -->
+                        <div class="col-sm-6 offset-2">
+                            <ul id="ing_list"></ul>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <!-- SUBMIT BUTTON -->
+                    <div class="row justify-content-end">
+                        <input type="submit" class="btn" value="Find Recipes" id="display_recipes">
+                    </div>
+                </form>
             </div>
+        </div>
         <!-- ALL MATCHED RECIPES -->
         <div class="row">
             <div class="col-8" id="recipes_found">
