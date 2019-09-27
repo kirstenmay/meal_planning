@@ -1,7 +1,11 @@
 #profilePicture {
-    width: 250px;
+    width: 100%;
 }
 
 .recipeImage {
     width: 100%;
+}
+
+.underline {
+    border-bottom: 1px solid black;
 }

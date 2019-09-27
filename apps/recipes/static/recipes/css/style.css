@@ -1,0 +1,11 @@
+.recipeImage {
+    width: 100%;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.right {
+    text-align: right;
+}
