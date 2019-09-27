@@ -23,12 +23,12 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="/user_profile">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav col-11">
+                    <li class="nav-item active"><a class="nav-link" href="/user_profile">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/recipes/new_recipe">+Recipe</a></li>
                     <li class="nav-item"><a class="nav-link" href="/ingredients/find_recipe">Find a Meal</a></li>
                 </ul>
@@ -36,6 +36,7 @@
                     <li class="nav-item"><a class="nav-link" href="/log_out">Logout</a></li>
                 </ul>
             </div>
+        </div>
     </nav>
     <div class="container">
         <div class="row justify-content-center" style="margin-top: 3%">
@@ -44,14 +45,17 @@
                 <div class="form-group">
                     <form action="/ingredients/add_ingredient" method="POST">
                         {% csrf_token %} ​
+                        
                         <!-- INGREDIENT NAME -->
                         <input type="text" name="name" class="form-control" placeholder="Ingredient Name"> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'name' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
                         {% endif %} {% endfor %} {% endif %} ​
+
                         <!-- DESCRIPTION -->
                         <textarea name="description" class="form-control" rows="4" placeholder="Description"></textarea> {% if messages %} {% for message in messages %} {% if message.extra_tags == 'description' %}
                         <p style="color: rgb(255, 10, 10);">{{ message }}</p>
                         {% endif %} {% endfor %} {% endif %} ​
+
                         <!-- PRICE -->
                         <input type="text" name='price' class="form-control" placeholder="Price"></textarea>
                         {% if messages %} {% for message in messages %} {% if message.extra_tags == 'price' %}
@@ -64,7 +68,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </body>
 ​

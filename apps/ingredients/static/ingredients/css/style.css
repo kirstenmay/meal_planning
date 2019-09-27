@@ -6,13 +6,8 @@ h3 {
 }
 
 #add_button {
-<<<<<<< HEAD
-    width: 25%;
+    width: 30%;
     background-color: rgb(78,54,41, 0.8);
-=======
-    width: 20%;
-    background-color: rgb(78, 54, 41, 0.8);
->>>>>>> 2df72c5da64452eed5a5fbd21d0eac31feb674e5
     color: white;
     border-radius: 1px;
     font-size: 1.1rem;
@@ -25,7 +20,7 @@ h3 {
 
 #display_recipes {
     width: 50%;
-    background-color: rgb(38, 38, 37, 0.8);
+    background-color: rgb(38,38,37, 0.8);
     color: white;
     border-radius: 1px;
     margin-top: 10px;
@@ -34,7 +29,7 @@ h3 {
 
 #cancel {
     width: 20%;
-    background-color: rgb(78, 54, 41, 0.8);
+    background-color: rgb(78,54,41, 0.8);
     color: white;
     border-radius: 1px;
     font-size: 1.1rem;
@@ -43,11 +38,8 @@ h3 {
 }
 
 #add_ingredient {
-<<<<<<< HEAD
-=======
     width: 30%;
-    background-color: rgb(38, 38, 37, 0.8);
->>>>>>> 2df72c5da64452eed5a5fbd21d0eac31feb674e5
+    background-color: rgb(38,38,37, 0.8);
     color: white;
     border-radius: 1px;
     font-size: 1.1rem;

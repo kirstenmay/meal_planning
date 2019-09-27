@@ -51,11 +51,17 @@
                 <p>{{user.created_at|date:"M d, Y"}}</p>
                 <p class="underline">MY RECIPES</p>
                 {% for recipe in this_users_recipes %}
-                <a href="/recipes/view_recipe/{{recipe.id}}" class="my_recipes">{{recipe.name}}</a> {% endfor %}
+                <ul><a href="/recipes/view_recipe/{{recipe.id}}" class="my_recipes">{{recipe.name}}</a></ul> 
+                {% endfor %}
             </div>
 
             <!-- MAIN CONTENT -->
             <div class="col-8">
+                <h4>{{recipe.name}}</h4>
+                <p>{{recipe.created}}</p>
+                <p>{{recipe.description}}</p>
+                <p>{% for ingredient in recipe.ingredients.all %} {{ingredient.name}}, {% endfor %}</p>
+                <p>{{recipe.directions}}</p>
                 <table class="table table-hover">
                     <thead>
                         <th>Name</th>
