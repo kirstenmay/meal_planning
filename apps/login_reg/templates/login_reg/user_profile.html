@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    
+
     <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 20px;">
         <div class="container">
@@ -40,31 +40,38 @@
             </div>
         </div>
     </nav>
-        
-        <div class="container">
-            <div class="row">
 
-                <!-- PROFILE COLUMN -->
-                <div class="col-4">
-                    <img src="/static/login_reg/img/mockProfImage.jpg" id="profilePicture" alt="blueberries">
-                    <h3>{{user.first_name}}</h3>
-                    <p>{{user.created_at|date:"M d, Y"}}</p>
-                    <p class="underline">MY RECIPES</p>
-                    {% for recipe in this_users_recipes %}
-                    <a href="/recipes/view_recipe/{{recipe.id}}">{{recipe.name}}</a>
-                    {% endfor %}
-                </div>
+    <div class="container">
+        <div class="row">
 
-                <!-- MAIN CONTENT -->
-                <div class="col-8">
-                    <table class="table">
-                        <tbody>
-                            {% for recipe in this_user_has_made %}
-                            <tr>{{recipe.name}}</tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+            <!-- PROFILE COLUMN -->
+            <div class="col-4">
+                <img src="/static/login_reg/img/mockProfImage.jpg" id="profilePicture" alt="blueberries">
+                <h3>{{user.first_name}}</h3>
+                <p>{{user.created_at|date:"M d, Y"}}</p>
+                <p class="underline">MY RECIPES</p>
+                {% for recipe in this_users_recipes %}
+                <a href="/recipes/view_recipe/{{recipe.id}}">{{recipe.name}}</a> {% endfor %}
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="col-8">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Directions</th>
+                        <th>Ingredients</th>
+                    </thead>
+                    <tr>
+                        {% for recipe in this_user_has_made %}
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.description}}</td>
+                        <td>{{recipe.directions}}</td>
+                        <td>{% for ingredient in recipe.ingredients.all %} {{ingredient.name}}, {% endfor %} </td>
+                        {% endfor %}
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

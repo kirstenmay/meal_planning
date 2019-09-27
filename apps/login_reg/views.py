@@ -49,7 +49,7 @@ def user_profile(request):
         context = {
             "user" : User.objects.get(id=request.session['userid']),
             "this_users_recipes" : User.objects.get(id=request.session['userid']).recipe_creator.values(),
-            "this_user_has_made" : User.objects.get(id=request.session['userid']).recipes_tried.values(),
+            "this_user_has_made" : User.objects.get(id=request.session['userid']).recipes_tried.all(),
         }
 
     return render(request, 'login_reg/user_profile.html', context)
