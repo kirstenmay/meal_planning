@@ -14,26 +14,80 @@
     text-transform: uppercase;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+    font-family: 'Playfair Display SC', serif;
+    letter-spacing: 8px;
+    font-weight: 100;
+    margin-bottom: 2rem;
+    font-size: 3rem;
+}
+
+h4 {
     font-family: 'Playfair Display SC', serif;
     letter-spacing: 5px;
     font-weight: 100;
+    margin-bottom: 0.5rem;
+}
+
+h5 {
+    font-family: 'Playfair Display SC', serif;
+    letter-spacing: 4px;
+    font-weight: 100;
+}
+
+form {
+    margin-bottom: 50px;
+}
+
+.form-group {
+    align: center;
+    margin-bottom: 30px;
 }
 
 .form-control {
-    background-color: rgb(184, 178, 166, 0.2);
+    background-color: rgb(184, 178, 166, 0.3);
+    border: none;
+    border-radius: 1px;
+    margin-top: 20px;
+    width: 90%;
 }
 
 .forgotPassword {
     font-family: 'Roboto', sans-serif;
     font-weight: light;
     font-size: 12px;
-    color: rgb(38,38,37, 0.6);
+    color: rgb(38,38,37, 0.9);
+    margin-bottom: 15px;
 }
 
 .btn {
-    width: 30%;
-    background-color: rgb(76,67,65, 0.6);
+    width: 50%;
+    background-color: rgb(78,54,41, 0.8);
     color: white;
     border-radius: 1px;
+    font-size: 1.1rem;
+    padding: 0.375rem 0.75rem; 
+}
+
+.btn-sign {
+    width: 50%;
+    background-color: rgb(38,38,37, 0.8);
+    color: white;
+    border-radius: 1px;
+    margin-top: 10px;
+}
+
+.spacer {
+    color: rgb(89,89,89, 0.6);
+    margin-bottom: -19px;
+}
+
+.or {
+    color: rgb(89,89,89, 0.6);
+    margin-bottom: 40px;
+}
+
+.space {
+    background-color: white;
+    padding: 0px 12px;
 }

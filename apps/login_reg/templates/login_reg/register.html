@@ -31,26 +31,41 @@
         </ul>
         {% endif %}
         <div class="row" style="margin-top: 3rem">
-            <div class="col-4">
+
+            <!-- LEFT COLUMN- HOMEPAGE IMAGE -->
+            <div class="col-5">
                 <img class="col" src="/static/login_reg/img/jarsLogin.jpg">
             </div>
-            <div class="col-8 text-center" style="margin-top: 4%;">
-                <h5>welcome back to</h5>
+
+            <!-- RIGHT COLUMN- WELCOME MESSAGE -->
+            <div class="col-7 text-center" style="margin-top: 4%;">
+                <h4>welcome back to</h4>
                 <h1>the Pantry</h1>
-                <form action="/login" method="POST" style="margin-bottom: 100px;">
+
+                <!-- LOGIN FORM -->
+                <form action="/login" method="POST">
                     {% csrf_token %}
-                    <div class="form-group offset-2">
+                    <div class="form-group offset-1">
                         <input type="hidden" name="login" value="login">
 
                         <!-- EMAIL INPUT -->
-                        <input type="text" name="login_email" id="login_email" class="form-control col-9">
+                        <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Email">
 
                         <!-- PASSWORD INPUT -->
-                        <input type="password" name="login_password" id="login_password" class="form-control col-9">
-                        <a href="" class="forgotPassword offset-4">Forgot Password?</a>
+                        <input type="password" name="login_password" id="login_password" class="form-control" placeholder="Password">
+                        <a href="" class="forgotPassword offset-7">Forgot Password?</a>
                     </div>
                     <input type="submit" class="btn btn-md" value="LOG IN">
                 </form>
+
+                <!-- CENTER DECORATION -->
+                <p class="spacer">_____________________________________________________________________</p>
+                <p class="or"><span class="space">  or  </span></p>
+
+                <!-- SIGN UP -->
+                <h5>not a member yet?</h5>
+                <input type="submit" class="btn btn-sign btn-md" value="Sign Up">
+
             </div>
 
 
