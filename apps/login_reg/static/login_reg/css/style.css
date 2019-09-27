@@ -99,4 +99,10 @@ form {
     padding: 0px 12px;
 }
 
+ul {
+    text-decoration: none;
+}
 
+.my_recipes {
+    color:  rgb(38,38,37, 0.9);
+}
