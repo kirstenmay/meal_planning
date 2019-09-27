@@ -101,25 +101,24 @@
                                     <option value = "{{i.id}}" class = "ingredient">{{i.name}}</option>
                                     {% endfor %}
                                 </select>
-                                        <!-- ADD LINK -->
-                                        <a href="/ingredients/select_ingredient" id="add_button" class="col offset-10">Add</a>
-                                    </div>
+                                    <!-- ADD LINK -->
+                                    <a href="/ingredients/select_ingredient" id="add_button" class="col offset-10">Add</a>
                                 </div>
                             </div>
-                            <!-- DISPLAY SELECTED INGREDIENTS -->
-                            <!-- Don't get rid of the id. Keep ul in div - style div however -->
-                            <div class="col-sm-6 offset-2">
-                                <ul id="ing_list"></ul>
-                            </div>
                         </div>
-
-                        <!-- SUBMIT BUTTON -->
-                        <div class="row justify-content-end">
-                            <input type="submit" class="btn" value="Find Recipes" id="display_recipes">
+                        <!-- DISPLAY SELECTED INGREDIENTS -->
+                        <!-- Don't get rid of the id. Keep ul in div - style div however -->
+                        <div class="col-sm-6 offset-2">
+                            <ul id="ing_list"></ul>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <!-- SUBMIT BUTTON -->
+                    <div class="row justify-content-end">
+                        <input type="submit" class="btn" value="Find Recipes" id="display_recipes">
+                    </div>
+                </form>
             </div>
+        </div>
         <!-- ALL MATCHED RECIPES -->
         <div class="row">
             <div class="col-8" id="recipes_found">

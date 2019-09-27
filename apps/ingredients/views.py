@@ -35,6 +35,10 @@ def select_ingredient(request):
     counter = 0
     for item in choice:
         counter += 1
+        errors = Ingredient.objects.find_recipe_val(counter)
+        if len(errors)>0:
+            for key,value in errors.items():
+                messages.error(request,value, extra_tags=key)
         string += f"<li><input type='hidden' value='{item}' name = 'ingredient_{counter}'>{Ingredient.objects.get(id=item).name}</li>"
     return HttpResponse(string)
 
